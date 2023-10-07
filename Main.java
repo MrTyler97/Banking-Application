@@ -74,6 +74,7 @@ public class Main {
                     if (Account[i] == null) {
                         Account[i] = new SavingsAccount(amount);
                         transactionHistory[i][0] = Account[i].getAccountType(); // Account type stored in first coloumn
+                        transactionHistory[i][i] = "Deposited: $" + amount;
                         referenceNum = i;
                         break;
                     }
@@ -91,6 +92,7 @@ public class Main {
                         Account[i] = new CheckingAccount(amount1, overdraftLim);
                         referenceNum = i;
                         transactionHistory[i][0] = Account[i].getAccountType();
+                        transactionHistory[i][i] = "Deposited: $" + amount1;
                         break;
                     }
                 }
@@ -104,6 +106,7 @@ public class Main {
                     if (Account[i] == null) {
                         Account[i] = new StudentAccount(amount2);
                         transactionHistory[i][0] = Account[i].getAccountType();
+                        transactionHistory[i][i] = "Deposited: $" + amount2;
                         referenceNum = i;
                         break;
                     }
@@ -118,6 +121,7 @@ public class Main {
                     if (Account[i] == null) {
                         Account[i] = new FixedDepositAccount(amount3, 0);
                         transactionHistory[i][0] = Account[i].getAccountType();
+                        transactionHistory[i][i] = "Deposited: $" + amount3;
                         referenceNum = i;
                         break;
                     }
@@ -132,6 +136,7 @@ public class Main {
                     if (Account[i] == null) {
                         Account[i] = new BusinessAccount(amount4);
                         transactionHistory[i][0] = Account[i].getAccountType();
+                        transactionHistory[i][i] = "Deposited: $" + amount4;
                         referenceNum = i;
                         break;
                     }
