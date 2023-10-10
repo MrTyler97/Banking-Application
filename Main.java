@@ -70,22 +70,31 @@ public class Main {
             case 1:
                 System.out.print("Deposit Amount: ");
                 double amount = kb.nextDouble();
-                for (int i = 0; i < Account.length; i++) {
-                    if (Account[i] == null) {
-                        Account[i] = new SavingsAccount(amount);
-                        transactionHistory[i][0] = Account[i].getAccountType(); // Account type stored in first coloumn
-                        transactionHistory[i][i] = "Deposited: $" + amount;
-                        referenceNum = i;
-                        break;
+                if (amount < 0) {
+                    System.out.println("\nPlease re-select 'Create Account' and re-enter a positive value.\n");
+                    return;
+                } else
+                    for (int i = 0; i < Account.length; i++) {
+                        if (Account[i] == null) {
+                            Account[i] = new SavingsAccount(amount);
+                            transactionHistory[i][0] = Account[i].getAccountType(); // Account type stored in first
+                                                                                    // coloumn
+                            transactionHistory[i][i] = "Deposited: $" + amount;
+                            referenceNum = i;
+                            break;
+                        }
                     }
-                }
                 System.out.println("\nSavings account created. Your account number is " + referenceNum);
                 System.out.println("\n========================================\n");
                 break;
             case 2:
                 System.out.print("Deposit Amount: ");
                 double amount1 = kb.nextDouble();
-                System.out.print("Overdraft Limit: ");
+                if (amount1 < 0) {
+                    System.out.println("\nPlease re-select 'Create Account' and re-enter a positive value.\n");
+                    return;
+                } else
+                    System.out.print("Overdraft Limit: ");
                 double overdraftLim = kb.nextDouble();
                 for (int i = 0; i < Account.length; i++) {
                     if (Account[i] == null) {
@@ -102,45 +111,57 @@ public class Main {
             case 3:
                 System.out.print("Deposit Amount: ");
                 double amount2 = kb.nextDouble();
-                for (int i = 0; i < Account.length; i++) {
-                    if (Account[i] == null) {
-                        Account[i] = new StudentAccount(amount2);
-                        transactionHistory[i][0] = Account[i].getAccountType();
-                        transactionHistory[i][i] = "Deposited: $" + amount2;
-                        referenceNum = i;
-                        break;
+                if (amount2 < 0) {
+                    System.out.println("\nPlease re-select 'Create Account' and re-enter a positive value.\n");
+                    return;
+                } else
+                    for (int i = 0; i < Account.length; i++) {
+                        if (Account[i] == null) {
+                            Account[i] = new StudentAccount(amount2);
+                            transactionHistory[i][0] = Account[i].getAccountType();
+                            transactionHistory[i][i] = "Deposited: $" + amount2;
+                            referenceNum = i;
+                            break;
+                        }
                     }
-                }
                 System.out.println("\nStudent account created. Your account number is " + referenceNum);
                 System.out.println("\n========================================\n");
                 break;
             case 4:
                 System.out.print("Deposit Amount: ");
                 double amount3 = kb.nextDouble();
-                for (int i = 0; i < Account.length; i++) {
-                    if (Account[i] == null) {
-                        Account[i] = new FixedDepositAccount(amount3, 0);
-                        transactionHistory[i][0] = Account[i].getAccountType();
-                        transactionHistory[i][i] = "Deposited: $" + amount3;
-                        referenceNum = i;
-                        break;
+                if (amount3 < 0) {
+                    System.out.println("\nPlease re-select 'Create Account' and re-enter a positive value.\n");
+                    return;
+                } else
+                    for (int i = 0; i < Account.length; i++) {
+                        if (Account[i] == null) {
+                            Account[i] = new FixedDepositAccount(amount3, 0);
+                            transactionHistory[i][0] = Account[i].getAccountType();
+                            transactionHistory[i][i] = "Deposited: $" + amount3;
+                            referenceNum = i;
+                            break;
+                        }
                     }
-                }
                 System.out.println("\nFixed Deposit account created. Your account number is " + referenceNum);
                 System.out.println("\n========================================\n");
                 break;
             case 5:
                 System.out.print("Deposit Amount: ");
                 double amount4 = kb.nextDouble();
-                for (int i = 0; i < Account.length; i++) {
-                    if (Account[i] == null) {
-                        Account[i] = new BusinessAccount(amount4);
-                        transactionHistory[i][0] = Account[i].getAccountType();
-                        transactionHistory[i][i] = "Deposited: $" + amount4;
-                        referenceNum = i;
-                        break;
+                if (amount4 < 0) {
+                    System.out.println("\nPlease re-select 'Create Account' and re-enter a positive value.\n");
+                    return;
+                } else
+                    for (int i = 0; i < Account.length; i++) {
+                        if (Account[i] == null) {
+                            Account[i] = new BusinessAccount(amount4);
+                            transactionHistory[i][0] = Account[i].getAccountType();
+                            transactionHistory[i][i] = "Deposited: $" + amount4;
+                            referenceNum = i;
+                            break;
+                        }
                     }
-                }
                 System.out.println("\nBusiness account created. Your account number is " + referenceNum);
                 System.out.println("\n========================================\n");
                 break;
@@ -156,9 +177,17 @@ public class Main {
         System.out.println("\n========================================\n");
         System.out.println("Please eneter your Account number");
         int selection = kb.nextInt();
+        if (selection > Account.length || Account[selection] == null) {
+            System.out.println("\nInvalid account number.\n");
+            return;
+        }
         System.out.println("Deposit : ");
         double deposit = kb.nextDouble();
-        Account[selection].deposit(deposit);
+        if (deposit < 0) {
+            System.out.println("\nPlease re-select 'Deposit Money' and enter a positive value.\n");
+            return;
+        } else
+            Account[selection].deposit(deposit);
         int i = 0; // used for loop as a counter and check
         for (; transactionHistory[selection][i] != null && i < transactionHistory[selection].length; i++) {
         }
@@ -179,8 +208,19 @@ public class Main {
         System.out.println("\n========================================\n");
         System.out.println("Please eneter your Account number");
         int selection = kb.nextInt();
+        if (selection > Account.length || Account[selection] == null) {
+            System.out.println("\nInvalid account number.\n");
+            return;
+        }
         System.out.println("Withdraw : ");
         double withdraw = kb.nextDouble();
+        if (withdraw < 0) {
+            System.out.println("\nPlease re-select 'Withdraw Money' and enter a positive value.\n");
+            return;
+        } else if (withdraw > Account[selection].balance) {
+            System.out.println("Request exceeds account balance.");
+            return;
+        }
         Account[selection].withdraw(withdraw);
         int i = 0;
         for (; transactionHistory[selection][i] != null && i < transactionHistory[selection].length; i++) {
@@ -200,6 +240,10 @@ public class Main {
         System.out.println("\n========================================\n");
         System.out.println("Please eneter your Account number");
         int selection = kb.nextInt();
+        if (selection > Account.length || Account[selection] == null) {
+            System.out.println("\nInvalid account number.\n");
+            return;
+        }
         System.out.println("\nHistory: ");
         for (int i = 0; i < transactionHistory[selection].length; i++) { // Prints all of the transactions on account
                                                                          // chosen
